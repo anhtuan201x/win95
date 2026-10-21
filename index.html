@@ -3,44 +3,88 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Windows 95 trên Trình duyệt (DOSBox)</title>
-    <!-- Nhúng CSS và JS của js-dos v7 -->
+    <title>Windows 95 PC Online</title>
+    <!-- Nhúng js-dos v7 -->
     <script src="https://js-dos.com/v7/build/js-dos.js"></script>
     <link rel="stylesheet" href="https://js-dos.com/v7/build/js-dos.css">
     <style>
-        body {
-            background-color: #1a1a1a;
-            color: #ffffff;
-            font-family: Arial, sans-serif;
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        html, body {
+            width: 100%;
+            height: 100%;
+            background-color: #000;
+            overflow: hidden;
             display: flex;
             flex-direction: column;
+        }
+        /* Thanh công cụ phía trên */
+        #toolbar {
+            height: 40px;
+            background: #222;
+            color: #fff;
+            display: flex;
             align-items: center;
-            justify-content: center;
-            height: 100vh;
-            margin: 0;
+            justify-content: space-between;
+            padding: 0 15px;
+            font-family: sans-serif;
+            font-size: 14px;
+            border-bottom: 1px solid #444;
         }
-        h2 {
-            margin-bottom: 10px;
+        #toolbar button {
+            background: #0078d7;
+            color: white;
+            border: none;
+            padding: 6px 12px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
         }
+        #toolbar button:hover {
+            background: #005a9e;
+        }
+        /* Vùng chứa màn hình Windows 95 */
         #app {
-            width: 700px;
-            height: 500px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
-            border-radius: 8px;
-            overflow: hidden;
+            width: 100vw;
+            height: calc(100vh - 40px);
         }
     </style>
 </head>
 <body>
 
-    <h2>Windows 95 Emulator (DOSBox)</h2>
+    <div id="toolbar">
+        <span>🖥️ <b>Windows 95 Fullscreen PC</b></span>
+        <button onclick="toggleFullscreen()">Phóng to Toàn màn hình (F11)</button>
+    </div>
+
     <div id="app"></div>
 
     <script>
-        // Khởi tạo js-dos chạy file cấu hình Windows 95 từ CDN
-        Dos(document.getElementById("app"), {
+        // Khởi tạo DOSBox phóng to vừa khít màn hình
+        const dosInstance = Dos(document.getElementById("app"), {
             url: "https://js-dos.com/cdn/win95.jsdos",
+            noSideBar: false, // Hiện thanh công cụ phụ nếu cần
+            noFullscreen: true
         });
+
+        // Hàm bật toàn màn hình chuẩn
+        function toggleFullscreen() {
+            const elem = document.getElementById("app");
+            if (!document.fullscreenElement) {
+                if (elem.requestFullscreen) {
+                    elem.requestFullscreen();
+                } else if (elem.webkitRequestFullscreen) {
+                    elem.webkitRequestFullscreen();
+                }
+            } else {
+                if (document.exitFullscreen) {
+                    document.exitFullscreen();
+                }
+            }
+        }
     </script>
 
 </body>
