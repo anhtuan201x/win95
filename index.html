@@ -5,10 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Windows 95 PC Online</title>
     
-    <!-- Nhúng emulators và emulators-ui từ unpkg -->
-    <script src="https://unpkg.com/emulators@7.5.8/dist/emulators.js"></script>
-    <script src="https://unpkg.com/emulators-ui@7.5.8/dist/emulators-ui.js"></script>
-    <link rel="stylesheet" href="https://unpkg.com/emulators-ui@7.5.8/dist/emulators-ui.css">
+    <!-- Dùng v8 bundle duy nhất, tích hợp sẵn toàn bộ CSS & JS, không bao giờ lo lỗi thiếu hàm -->
+    <script src="https://v8.js-dos.com/latest/js-dos.js"></script>
 
     <style>
         * {
@@ -64,14 +62,9 @@
     <div id="app"></div>
 
     <script>
-        // Cấu hình đường dẫn cho emulators
-        emulators.pathPrefix = "https://unpkg.com/emulators@7.5.8/dist/";
-
-        // Khởi tạo Windows 95 đúng chuẩn cấu trúc của emulators-ui
-        emulators.loadCanvas(document.getElementById("app")).then(async (ci) => {
-            await ci.start({
-                url: "https://v8.js-dos.com/win95.jsdos",
-            });
+        // Cú pháp khởi tạo chuẩn của js-dos v8
+        Dos(document.getElementById("app"), {
+            url: "https://v8.js-dos.com/win95.jsdos"
         });
 
         function toggleFullscreen() {
