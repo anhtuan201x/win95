@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Windows 95 PC Online</title>
     
-    <!-- Nhúng js-dos v7 từ CDN unpkg (tránh bị OpaqueResponseBlocking) -->
+    <!-- Nhúng emulators và emulators-ui từ unpkg -->
     <script src="https://unpkg.com/emulators@7.5.8/dist/emulators.js"></script>
     <script src="https://unpkg.com/emulators-ui@7.5.8/dist/emulators-ui.js"></script>
     <link rel="stylesheet" href="https://unpkg.com/emulators-ui@7.5.8/dist/emulators-ui.css">
@@ -67,9 +67,11 @@
         // Cấu hình đường dẫn cho emulators
         emulators.pathPrefix = "https://unpkg.com/emulators@7.5.8/dist/";
 
-        // Khởi tạo DOSBox khởi chạy Windows 95
-        Dos(document.getElementById("app"), {
-            url: "https://v8.js-dos.com/win95.jsdos",
+        // Khởi tạo Windows 95 đúng chuẩn cấu trúc của emulators-ui
+        emulators.loadCanvas(document.getElementById("app")).then(async (ci) => {
+            await ci.start({
+                url: "https://v8.js-dos.com/win95.jsdos",
+            });
         });
 
         function toggleFullscreen() {
