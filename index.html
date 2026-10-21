@@ -43,11 +43,10 @@
         #toolbar button:hover {
             background: #005a9e;
         }
-        /* Dùng iframe trực tiếp để bypass toàn bộ lỗi chặn script của trình duyệt */
-        iframe {
+        /* Khung hiển thị giả lập chuẩn xác */
+        #game {
             width: 100%;
             height: calc(100vh - 40px);
-            border: none;
         }
     </style>
 </head>
@@ -58,8 +57,20 @@
         <button onclick="toggleFullscreen()">Phóng to Toàn màn hình (F11)</button>
     </div>
 
-    <!-- Nhúng trực tiếp bản chuẩn từ v8 js-dos -->
-    <iframe src="https://v8.js-dos.com/win95/" allowfullscreen="true"></iframe>
+    <!-- Vùng chứa giả lập -->
+    <div id="game"></div>
+
+    <!-- Cấu hình EmulatorJS để chạy Windows 95 -->
+    <script>
+        EJS_player = "#game";
+        EJS_core = "dosbox";
+        EJS_gameName = "Windows 95";
+        EJS_color = "#0078d7";
+        // Sử dụng file ảnh đĩa Windows 95 ổn định từ nguồn lưu trữ công cộng
+        EJS_url = "https://cdn.jsdelivr.net/gh/dreamlayers/emulators-ui@master/demos/win95.zip"; 
+        EJS_pathtodata = "https://cdn.jsdelivr.net/gh/EmulatorJS/EmulatorJS@latest/data/";
+    </script>
+    <script src="https://cdn.jsdelivr.net/gh/EmulatorJS/EmulatorJS@latest/data/loader.js"></script>
 
     <script>
         function toggleFullscreen() {
