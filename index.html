@@ -4,6 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Windows 95 PC Online</title>
+    
+    <!-- Nhúng CSS và JS chuẩn của js-dos v8 -->
+    <script src="https://v8.js-dos.com/latest/js-dos.js"></script>
+    <link rel="stylesheet" href="https://v8.js-dos.com/latest/js-dos.css">
+
     <style>
         * {
             box-sizing: border-box;
@@ -13,7 +18,7 @@
         html, body {
             width: 100%;
             height: 100%;
-            background-color: #000;
+            background-color: #111;
             overflow: hidden;
             display: flex;
             flex-direction: column;
@@ -26,7 +31,7 @@
             align-items: center;
             justify-content: space-between;
             padding: 0 15px;
-            font-family: sans-serif;
+            font-family: Arial, sans-serif;
             font-size: 14px;
             border-bottom: 1px solid #444;
             z-index: 10;
@@ -43,8 +48,8 @@
         #toolbar button:hover {
             background: #005a9e;
         }
-        /* Khung hiển thị giả lập chuẩn xác */
-        #game {
+        /* Vùng khung chạy Windows 95 */
+        #app {
             width: 100%;
             height: calc(100vh - 40px);
         }
@@ -57,22 +62,14 @@
         <button onclick="toggleFullscreen()">Phóng to Toàn màn hình (F11)</button>
     </div>
 
-    <!-- Vùng chứa giả lập -->
-    <div id="game"></div>
-
-    <!-- Cấu hình EmulatorJS để chạy Windows 95 -->
-    <script>
-        EJS_player = "#game";
-        EJS_core = "dosbox";
-        EJS_gameName = "Windows 95";
-        EJS_color = "#0078d7";
-        // Sử dụng file ảnh đĩa Windows 95 ổn định từ nguồn lưu trữ công cộng
-        EJS_url = "https://cdn.jsdelivr.net/gh/dreamlayers/emulators-ui@master/demos/win95.zip"; 
-        EJS_pathtodata = "https://cdn.jsdelivr.net/gh/EmulatorJS/EmulatorJS@latest/data/";
-    </script>
-    <script src="https://cdn.jsdelivr.net/gh/EmulatorJS/EmulatorJS@latest/data/loader.js"></script>
+    <div id="app"></div>
 
     <script>
+        // Khởi tạo trực tiếp Windows 95 từ CDN chính thức của js-dos v8
+        Dos(document.getElementById("app"), {
+            url: "https://v8.js-dos.com/bundles/win95.jsdos"
+        });
+
         function toggleFullscreen() {
             const elem = document.documentElement;
             if (!document.fullscreenElement) {
