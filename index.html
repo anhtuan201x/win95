@@ -4,10 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Windows 95 PC Online</title>
-    
-    <!-- Load nipplejs dependency required by EmulatorJS -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/nipplejs/0.10.2/nipplejs.min.js"></script>
-
     <style>
         * {
             box-sizing: border-box;
@@ -47,9 +43,10 @@
         #toolbar button:hover {
             background: #005a9e;
         }
-        #game {
+        iframe {
             width: 100%;
             height: calc(100vh - 40px);
+            border: none;
         }
     </style>
 </head>
@@ -60,17 +57,8 @@
         <button onclick="toggleFullscreen()">Toggle Fullscreen (F11)</button>
     </div>
 
-    <div id="game"></div>
-
-    <script>
-        EJS_player = "#game";
-        EJS_core = "dosbox";
-        EJS_gameName = "Windows 95";
-        EJS_color = "#0078d7";
-        EJS_url = "https://cdn.jsdelivr.net/gh/dreamlayers/emulators-ui@master/demos/win95.zip"; 
-        EJS_pathtodata = "https://cdn.jsdelivr.net/gh/EmulatorJS/EmulatorJS@latest/data/";
-    </script>
-    <script src="https://cdn.jsdelivr.net/gh/EmulatorJS/EmulatorJS@latest/data/loader.js"></script>
+    <!-- Embedded directly from Internet Archive's stable PC emulation backend -->
+    <iframe src="https://archive.org/embed/win95_usa" allowfullscreen="true" sandbox="allow-scripts allow-same-origin allow-pointer-lock allow-forms"></iframe>
 
     <script>
         function toggleFullscreen() {
