@@ -1,13 +1,9 @@
 <!DOCTYPE html>
-<html lang="vi">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Windows 95 PC Online</title>
-    
-    <!-- Nhúng thư viện nipplejs để EmulatorJS không bị thiếu hàm gamepad ảo -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/nipplejs/0.10.2/nipplejs.min.js"></script>
-
     <style>
         * {
             box-sizing: border-box;
@@ -30,7 +26,7 @@
             align-items: center;
             justify-content: space-between;
             padding: 0 15px;
-            font-family: Arial, sans-serif;
+            font-family: sans-serif;
             font-size: 14px;
             border-bottom: 1px solid #444;
             z-index: 10;
@@ -57,10 +53,9 @@
 
     <div id="toolbar">
         <span>🖥️ <b>Windows 95 PC Online</b></span>
-        <button onclick="toggleFullscreen()">Phóng to Toàn màn hình (F11)</button>
+        <button onclick="toggleFullscreen()">Toggle Fullscreen (F11)</button>
     </div>
 
-    <!-- Vùng chứa giả lập EmulatorJS -->
     <div id="game"></div>
 
     <script>
@@ -68,8 +63,7 @@
         EJS_core = "dosbox";
         EJS_gameName = "Windows 95";
         EJS_color = "#0078d7";
-        // Tắt bàn phím ảo joystick cho gọn vì chạy Win 95 dùng chuột/bàn phím thật
-        EJS_virtualGamepad = false; 
+        EJS_virtualGamepad = false;
         EJS_url = "https://cdn.jsdelivr.net/gh/dreamlayers/emulators-ui@master/demos/win95.zip"; 
         EJS_pathtodata = "https://cdn.jsdelivr.net/gh/EmulatorJS/EmulatorJS@latest/data/";
     </script>
