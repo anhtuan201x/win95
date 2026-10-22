@@ -4,6 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Windows 95 PC Online</title>
+    
+    <!-- Load js-dos v7 styles and script -->
+    <script src="https://js-dos.com/v7/build/js-dos.js"></script>
+    <link rel="stylesheet" href="https://js-dos.com/v7/build/js-dos.css">
+
     <style>
         * {
             box-sizing: border-box;
@@ -43,7 +48,7 @@
         #toolbar button:hover {
             background: #005a9e;
         }
-        #game {
+        #app {
             width: 100%;
             height: calc(100vh - 40px);
         }
@@ -56,21 +61,14 @@
         <button onclick="toggleFullscreen()">Toggle Fullscreen (F11)</button>
     </div>
 
-    <div id="game"></div>
+    <div id="app"></div>
 
     <script>
-        EJS_player = "#game";
-        EJS_core = "dosbox";
-        EJS_gameName = "Windows 95";
-        EJS_color = "#0078d7";
-        EJS_virtualGamepad = false;
-        EJS_gamepad = false; // Completely disables gamepad initialization to fix the reference error
-        EJS_url = "https://cdn.jsdelivr.net/gh/dreamlayers/emulators-ui@master/demos/win95.zip"; 
-        EJS_pathtodata = "https://cdn.jsdelivr.net/gh/EmulatorJS/EmulatorJS@latest/data/";
-    </script>
-    <script src="https://cdn.jsdelivr.net/gh/EmulatorJS/EmulatorJS@latest/data/loader.js"></script>
+        // Initialize js-dos v7 package directly
+        Dos(document.getElementById("app"), {
+            url: "https://js-dos.com/cdn/win95.jsdos"
+        });
 
-    <script>
         function toggleFullscreen() {
             const elem = document.documentElement;
             if (!document.fullscreenElement) {
